@@ -22,10 +22,10 @@ module Racker
       packer = Smash.new
 
       # Variables
-      packer['variables'] = self['variables'].dup
+      packer['variables'] = self['variables'].dup unless self['variables'].nil? || self['variables'].empty?
       
       # Builders
-      packer['builders'] = []
+      packer['builders'] = [] unless self['builders'].nil? || self['builders'].empty?
       log.info("Processing builders...")
       self['builders'].each do |name,config|
         log.info("Processing builder: #{name} with type: #{config['type']}")
@@ -38,7 +38,7 @@ module Racker
       end
 
       # Provisioners
-      packer['provisioners'] = []
+      packer['provisioners'] = [] unless self['provisioners'].nil? || self['provisioners'].empty?
       log.info("Processing provisioners...")
       self['provisioners'].sort.map do |index, provisioners|
         provisioners.each do |name,config|
@@ -48,7 +48,7 @@ module Racker
       end
 
       # Post-Processors
-      packer['post-processors'] = []
+      packer['post-processors'] = [] unless self['postprocessors'].nil? || self['postprocessors'].empty?
       log.info("Processing post-processors...")
       self['postprocessors'].each do |name,config|
         log.debug("Processing post-processor: #{name}")

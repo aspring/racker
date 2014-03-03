@@ -1,3 +1,7 @@
+## 0.1.1 (Unreleased)
+
+* Do not create empty Packer namespace entries if the Racker template does not contain the namespace.
+
 ## 0.1.0 (2014-02-23)
 
 * Initial public release
