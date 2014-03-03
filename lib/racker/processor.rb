@@ -58,7 +58,7 @@ module Racker
 
       # Overlay the templates
       templates.each do |template|
-        current_template = current_template.deep_merge!(template, {:knockout_prefix => '--'})
+        current_template = current_template.deep_merge!(template, {:knockout_prefix => @options[:knockout]})
       end
       
       # Compact the residual template to remove nils

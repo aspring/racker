@@ -71,6 +71,7 @@ module Racker
     def options
       @options ||= {
         log_level:     :warn,
+        knockout:      '~~', 
         output:        '',
         templates:     [], 
       }
@@ -82,6 +83,10 @@ module Racker
         
         opts.on('-l', '--log-level [LEVEL]', [:fatal, :error, :warn, :info, :debug], 'Set log level') do |v|
           options[:log_level] = v
+        end
+
+        opts.on('-k', '--knockout PREFIX', 'Set the knockout prefix (Default: ~~)') do |v|
+          options[:knockout] = v || '~~'
         end
 
         opts.on_tail('-h', '--help', 'Show this message') do

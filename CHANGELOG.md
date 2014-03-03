@@ -1,6 +1,8 @@
 ## 0.1.1 (Unreleased)
 
 * Do not create empty Packer namespace entries if the Racker template does not contain the namespace.
+* Added the ability to set the knockout prefix from the command line.
+* Changed default knockout prefix from '--' to '~~' as it conflicted with certain Virtualbox builder keys.
 
 ## 0.1.0 (2014-02-23)
 
