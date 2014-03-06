@@ -44,7 +44,8 @@ module Racker
       log.debug('Processing complete.')
 
       # Thats all folks!
-      puts "Processing complete! Packer file generated: #{options[:output]}"
+      puts "Processing complete!" unless options[:quiet]
+      puts "Packer file generated: #{options[:output]}" unless options[:quiet]
 
       return 0
     end
@@ -73,7 +74,8 @@ module Racker
         log_level:     :warn,
         knockout:      '~~', 
         output:        '',
-        templates:     [], 
+        templates:     [],
+        quiet:         false, 
       }
     end
 
@@ -87,6 +89,10 @@ module Racker
 
         opts.on('-k', '--knockout PREFIX', 'Set the knockout prefix (Default: ~~)') do |v|
           options[:knockout] = v || '~~'
+        end
+
+        opts.on('-q', '--quiet', 'Disable unnecessary output') do |v|
+          options[:quiet] = v || '~~'
         end
 
         opts.on_tail('-h', '--help', 'Show this message') do
