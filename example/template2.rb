@@ -5,7 +5,7 @@ Racker::Processor.register_template do |t|
   }
 
   # Knock out the amazon builder as it is not needed by this template
-  t.builders['amazon'] = '--'
+  t.builders['amazon'] = '~~'
   
   # Define the provisioners
   t.provisioners = {
@@ -29,7 +29,7 @@ Racker::Processor.register_template do |t|
     },
     900 => {
       # Knockout the ec2 instance prep
-      'prepare-ec2-instance' => '--'
+      'prepare-ec2-instance' => '~~'
     }
   }
 end
