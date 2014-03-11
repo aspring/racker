@@ -92,7 +92,7 @@ module Racker
         end
 
         opts.on('-q', '--quiet', 'Disable unnecessary output') do |v|
-          options[:quiet] = v || '~~'
+          options[:quiet] = true
         end
 
         opts.on_tail('-h', '--help', 'Show this message') do

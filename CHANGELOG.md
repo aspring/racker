@@ -1,3 +1,7 @@
+## 0.1.2 (2014-03-11)
+
+* Fix quiet option cli setting
+
 ## 0.1.1 (2014-03-06)
 
 New Features:
