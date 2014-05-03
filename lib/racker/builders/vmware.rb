@@ -10,7 +10,7 @@ module Racker
         log.debug("Entering #{self.class}.#{__method__}")
         config = super(name, config)
 
-        %w(boot_command floppy_files iso_urls vboxmanage).each do |key|
+        %w(boot_command floppy_files iso_urls).each do |key|
           if config.key? key
             log.info("Converting #{key} to packer value...")
             config[key] = convert_hash_to_packer_value(config[key])
