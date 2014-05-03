@@ -1,3 +1,7 @@
+## 0.1.3 (unreleased)
+
+* Added support for VirtualBox `export_opts` and `vboxmanage_post` options which were added in Packer 0.6.0.
+
 ## 0.1.2 (2014-03-11)
 
 * Fix quiet option cli setting
