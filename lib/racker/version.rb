@@ -5,8 +5,8 @@ module Racker
   module Version
     MAJOR = 0
     MINOR = 1
-    PATCH = 3
-    BUILD = nil
+    PATCH = 4
+    BUILD = 'dev'
 
     STRING = [MAJOR, MINOR, PATCH, BUILD].compact.join('.')
 
