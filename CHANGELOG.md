@@ -1,4 +1,4 @@
-## 0.1.3 (unreleased)
+## 0.1.3 (2014-05-06)
 
 * Added support for VirtualBox `export_opts` and `vboxmanage_post` options which were added in Packer 0.6.0.
 
