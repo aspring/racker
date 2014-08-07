@@ -10,14 +10,12 @@ module Racker
         log.debug("Entering #{self.class}.#{__method__}")
         config = super(name, config)
 
-        # There are no special cases at this point
-
-        # %w().each do |key|
-        #   if config.key? key
-        #     log.info("Converting #{key} to packer value...")
-        #     config[key] = convert_hash_to_packer_value(config[key])
-        #   end
-        # end
+        %w(security_groups).each do |key|
+          if config.key? key
+            log.info("Converting #{key} to packer value...")
+            config[key] = convert_hash_to_packer_value(config[key])
+          end
+        end
 
         log.debug("Leaving #{self.class}.#{__method__}")
         config
