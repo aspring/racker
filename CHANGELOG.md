@@ -1,3 +1,10 @@
+## 0.1.4 (2014-08-07)
+
+New Features:
+* Added support for OpenStack `security_groups` options.
+* Added `null` builder support.
+* Added `parallels` builder support.  (UNTESTED)
+
 ## 0.1.3 (2014-05-06)
 
 * Added support for VirtualBox `export_opts` and `vboxmanage_post` options which were added in Packer 0.6.0.
