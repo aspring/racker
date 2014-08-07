@@ -68,8 +68,12 @@ module Racker
         Racker::Builders::Docker.new
       when /googlecompute/
         Racker::Builders::Google.new
+      when /null/
+        Racker::Builders::Null.new
       when /openstack/
         Racker::Builders::OpenStack.new
+      when /parallels/
+        Racker::Builders::Parallels.new
       when /qemu/
         Racker::Builders::QEMU.new
       when /virtualbox/
