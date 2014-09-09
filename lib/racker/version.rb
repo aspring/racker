@@ -6,7 +6,7 @@ module Racker
     MAJOR = 0
     MINOR = 1
     PATCH = 5
-    BUILD = 'dev'
+    BUILD = nil
 
     STRING = [MAJOR, MINOR, PATCH, BUILD].compact.join('.')
 
