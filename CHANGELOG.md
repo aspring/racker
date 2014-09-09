@@ -1,3 +1,7 @@
+## 0.1.5 (2014-09-08)
+
+* Added support for VirtualBox `import_flags` options which were added in Packer 0.7.0.
+
 ## 0.1.4 (2014-08-07)
 
 New Features:
