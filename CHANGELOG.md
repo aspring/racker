@@ -1,3 +1,7 @@
+## 0.1.6 (2014-09-16)
+
+* Fixed `uninitialized constant Racker::Builders::Null` bug.
+
 ## 0.1.5 (2014-09-08)
 
 * Added support for VirtualBox `import_flags` options which were added in Packer 0.7.0.
