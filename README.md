@@ -29,7 +29,7 @@ To merge multiple templates you can keep adding Racker templates:
 
     $ racker rackertemplate1.rb rackertemplate2.rb rackertemplate3.rb packertemplate.json
 
-The output of the previous command will be the template 1 deep merged with template2, the result of this merge is deep merged with template 3 then output as a packer template.
+The output of the previous command will be template 1 deep merged with template2, the result of this merge is deep merged with template 3 then output as a packer template.
 
 ## Racker Template Syntax
 The goal of Racker is to provide a template structure that allows for allowing full control of the template merging process to achieve the desired Packer template. 
