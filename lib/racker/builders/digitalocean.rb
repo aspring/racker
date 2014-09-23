@@ -11,7 +11,7 @@ module Racker
         config = super(name, config)
 
         # There are no special cases at this point
-        
+
         # %w().each do |key|
         #   if config.key? key
         #     log.info("Converting #{key} to packer value...")

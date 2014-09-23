@@ -18,13 +18,13 @@ module Racker
     def to_packer
       # Get the global logger
       log = Log4r::Logger['racker']
-      
+
       # Create the new smash
       packer = Smash.new
 
       # Variables
       packer['variables'] = self['variables'].dup unless self['variables'].nil? || self['variables'].empty?
-      
+
       # Builders
       packer['builders'] = [] unless self['builders'].nil? || self['builders'].empty?
       log.info("Processing builders...")

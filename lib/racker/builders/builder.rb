@@ -8,7 +8,7 @@ module Racker
       def to_packer(name, config)
         log = Log4r::Logger['racker']
         log.debug("Entering #{self.class}.#{__method__}")
-        
+
         # Set the name of the builder
         log.info("Setting config name to #{name}")
         config['name'] = name
