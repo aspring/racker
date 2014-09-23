@@ -6,7 +6,7 @@ Racker::Processor.register_template do |t|
 
   # Knock out the amazon builder as it is not needed by this template
   t.builders['amazon'] = '~~'
-  
+
   # Define the provisioners
   t.provisioners = {
     600 => {

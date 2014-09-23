@@ -7,7 +7,7 @@ if RUBY_VERSION >= '1.9.2'
   begin
     $:.unshift(File.expand_path(File.join(File.dirname(__FILE__), '..', 'lib')))
     require 'racker'
-    
+
     # Create the initial logger
     log = Log4r::Logger.new('racker')
 
@@ -16,7 +16,7 @@ if RUBY_VERSION >= '1.9.2'
 
     # We set the initial log level to ERROR
     log.level = Log4r::ERROR
-    
+
     # Let the CLI do its thing
     exit_code = Racker::CLI.new(ARGV.dup).execute!
 

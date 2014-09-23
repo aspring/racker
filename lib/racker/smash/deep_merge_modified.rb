@@ -62,7 +62,7 @@ module DeepMergeModified
   #   dest   = {:x => [{:z => 2}]}
   #   dest.deep_merge!(source, {:merge_hash_arrays => true})
   #   Results: {:x => [{:y => 1, :z => 2}]}
-  # 
+  #
   # There are many tests for this library - and you can learn more about the features
   # and usages of deep_merge! by just browsing the test examples
   def self.deep_merge!(source, dest, options = {})

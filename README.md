@@ -15,16 +15,16 @@ Racker is able to take multiple Racker templates, merge them together, and gener
 ## Installation
 
     $ gem install racker
-    
+
 ## Usage
 To generate a Packer template from a Racker template, run:
-    
+
     $ racker rackertemplate1.rb packertemplate.json
-  
+
 To generate a Packer template from multiple Racker templates, run:
-    
+
     $ racker rackertemplate1.rb rackertemplate2.rb packertemplate.json
-  
+
 To merge multiple templates you can keep adding Racker templates:
 
     $ racker rackertemplate1.rb rackertemplate2.rb rackertemplate3.rb packertemplate.json
@@ -32,7 +32,7 @@ To merge multiple templates you can keep adding Racker templates:
 The output of the previous command will be template 1 deep merged with template2, the result of this merge is deep merged with template 3 then output as a packer template.
 
 ## Racker Template Syntax
-The goal of Racker is to provide a template structure that allows for allowing full control of the template merging process to achieve the desired Packer template. 
+The goal of Racker is to provide a template structure that allows for allowing full control of the template merging process to achieve the desired Packer template.
 
 In order to do this Racker takes an opinionated stance on the following:
 
@@ -71,7 +71,7 @@ end
 
 #### Builders Namespace
 
-Racker templates support the `builders` namespace which is a hash, keyed by the name of the builder.  
+Racker templates support the `builders` namespace which is a hash, keyed by the name of the builder.
 
 All Packer arrays inside of this namespace should be represented as hashes in Racker.  Racker will use the value when creating the template, the key is there purely for allowing you to override/knockout as necessary.
 
@@ -113,7 +113,7 @@ One of the sections of node in this builder is the `vboxmanage`.  It has been co
 
 #### Provisioners Namespace
 
-Racker templates support the `provisioners` namespace which is a Fixnum keyed hash.  
+Racker templates support the `provisioners` namespace which is a Fixnum keyed hash.
 
 When generating the Packer template, Racker will order the provisioners based upon the Fixnum key, this allows complete control on the ordering of provisioners throughout Racker templates.
 
@@ -187,7 +187,7 @@ Racker offers 2 very basic example templates `example/template1.rb` and `example
 To experiement with these templates, after installing Racker, and cloning this repo you can execute the following:
 
     $ racker ./example/template1rb ./example/tempalte2.rb ./example/packer.json
-    
+
 While these two templates are not all inclusive of the capabilities of Racker, it shows off the ability to have a basic template, and a second template that removes the pieces of the template that target Amazon, as well as adds two chef solo provisioner steps.
 
 ## Testing

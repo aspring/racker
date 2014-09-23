@@ -1,5 +1,5 @@
 Racker::Processor.register_template do |t|
-  
+
   # Define the variables
   t.variables = {
     'iso_checksum'              => '6232efa014d9c6798396b63152c4c9a08b279f5e',
@@ -181,5 +181,5 @@ Racker::Processor.register_template do |t|
     'keep_input_artifact' => true,
     'only' => ['virtualbox-vagrant','vmware-vagrant']
   }
-  
+
 end

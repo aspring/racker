@@ -18,7 +18,7 @@ module Racker
     def execute!
       # Get the global logger
       log = Log4r::Logger['racker']
-      
+
       # Verify that the templates exist
       @options[:templates].each do |template|
         raise "File does not exist!  (#{template})" unless ::File.exists?(template)
@@ -60,16 +60,16 @@ module Racker
       templates.each do |template|
         current_template = current_template.deep_merge!(template, {:knockout_prefix => @options[:knockout]})
       end
-      
+
       # Compact the residual template to remove nils
       log.info('Compacting racker template...')
       compact_template = current_template.compact(:recurse => true)
 
       # Write the compact template out to file
       File.open(@options[:output], 'w') do |file|
-        log.info('Writing packer template...') 
+        log.info('Writing packer template...')
         file.write(JSON.pretty_generate(compact_template.to_packer))
-        log.info('Writing packer template complete.') 
+        log.info('Writing packer template complete.')
       end
     end
 

@@ -27,7 +27,7 @@ module Racker
 
       # Display the options if a minimum of 1 template and an output file is not provided
       if @argv.length < 2
-        puts option_parser 
+        puts option_parser
         Kernel.exit!(1)
       end
 
@@ -49,7 +49,7 @@ module Racker
 
       return 0
     end
-   
+
     private
 
     def get_log4r_level(level)
@@ -72,17 +72,17 @@ module Racker
     def options
       @options ||= {
         log_level:     :warn,
-        knockout:      '~~', 
+        knockout:      '~~',
         output:        '',
         templates:     [],
-        quiet:         false, 
+        quiet:         false,
       }
     end
 
     def option_parser
       @option_parser ||= OptionParser.new do |opts|
         opts.banner = "Usage: #{opts.program_name} [options] [TEMPLATE1, TEMPLATE2, ...] OUTPUT"
-        
+
         opts.on('-l', '--log-level [LEVEL]', [:fatal, :error, :warn, :info, :debug], 'Set log level') do |v|
           options[:log_level] = v
         end
