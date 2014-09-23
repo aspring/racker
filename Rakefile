@@ -24,7 +24,7 @@ task :coverage do
 end
 
 require 'rubocop/rake_task'
-Rubocop::RakeTask.new(:rubocop) do |t|
+RuboCop::RakeTask.new(:rubocop) do |t|
   # Specify the files we will look at
   t.patterns = ['bin', File.join('{lib}','**', '*.rb')]
   
