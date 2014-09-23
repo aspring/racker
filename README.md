@@ -215,7 +215,6 @@ Run the tests with `rake`:
     * docker
     * qemu
 * Implement unit testing
-* Travis CI
 * Additional documentation work 
 * Add capability to target specific packer versions should the packer template format change.
 * Add quick init to generate a basic Racker template
