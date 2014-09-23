@@ -1,4 +1,6 @@
 # Racker
+[![Gem Version](https://badge.fury.io/rb/racker.svg)](http://badge.fury.io/rb/racker)
+[![Build Status](https://travis-ci.org/aspring/racker.svg?branch=master)](https://travis-ci.org/aspring/racker)
 
 * Website: http://github.com/aspring/racker
 
@@ -192,7 +194,20 @@ While these two templates are not all inclusive of the capabilities of Racker, i
 
 ## Testing
 
-TODO: This section needs to be written
+Run the tests with `rake`:
+```bash
+  # Ensure you've installed the bundle:
+  bundle install
+
+  # Run spec tests
+  bundle exec rake spec
+
+  # Run tests and generate code coverage statistics
+  bundle exec rake coverage
+
+  # Run RuboCop assessment
+  bundle exec rake rubocop
+```
 
 ## Outstanding Development
 
@@ -200,7 +215,6 @@ TODO: This section needs to be written
     * docker
     * qemu
 * Implement unit testing
-* Travis CI
 * Additional documentation work 
 * Add capability to target specific packer versions should the packer template format change.
 * Add quick init to generate a basic Racker template
