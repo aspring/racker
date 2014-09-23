@@ -1,4 +1,6 @@
 # Racker
+[![Gem Version](https://badge.fury.io/rb/racker.svg)](http://badge.fury.io/rb/racker)
+[![Build Status](https://travis-ci.org/aspring/racker.svg?branch=master)](https://travis-ci.org/aspring/racker)
 
 * Website: http://github.com/aspring/racker
 
