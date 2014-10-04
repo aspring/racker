@@ -74,7 +74,7 @@ module Racker
     def load(templates)
       return capture_templates do
         templates.each do |template|
-          puts "Loading template file: #{template}" unless @options[:quiet]
+          logger.debug("Loading template file: #{template}")
           Kernel.load template
         end
       end

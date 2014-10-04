@@ -34,7 +34,7 @@ RSpec.describe Racker::Processor do
 
   context '#capture_templates' do
     before(:all) do
-      @instance = described_class.new(:quiet => true)
+      @instance = described_class.new({})
     end
 
     it 'captures [version, template_proc] pairs for each call to ::register_template' do
@@ -59,7 +59,6 @@ RSpec.describe Racker::Processor do
       @options = {
         :output => "/tmp/#{SecureRandom.uuid}/this_directory_should_not_exist/template.json",
         :knockout => '~~',
-        :quiet => true,
       }
       @output_path = @options[:output]
       @instance = described_class.new(@options)
@@ -124,7 +123,6 @@ RSpec.describe Racker::Processor do
 
       @options.replace({
         :output => @output_path,
-        :quiet => true,
         :templates => [
           fixture_path('low_priority_template.rb'),
         ],
@@ -151,30 +149,9 @@ RSpec.describe Racker::Processor do
       @instance = described_class.new(@options)
     end
 
-    it 'puts the template file if a falsy :quiet option was provided' do
-      expect(@instance).to receive(:puts).exactly(3).times
-
-      @options.delete(:quiet)
-      @instance.load([@fixture])
-      @options[:quiet] = nil
-      @instance.load([@fixture])
-      @options[:quiet] = false
-      @instance.load([@fixture])
-    end
-
-    it 'puts no output if a truthy :quiet option was provided' do
-      expect(@instance).to_not receive(:puts)
-
-      @options[:quiet] = true
-      @instance.load([@fixture])
-      @options[:quiet] = Object.new
-      @instance.load([@fixture])
-    end
-
     it 'loads each given template path' do
       expect(Kernel).to receive(:load).with(@fixture).exactly(3).times
 
-      @options[:quiet] = true
       @instance.load([
         @fixture,
         @fixture,
