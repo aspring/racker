@@ -25,6 +25,8 @@ RSpec.describe Racker::CLI do
         @instance = Racker::CLI.new(@argv)
         @options = @instance.send(:options)
         @options[:quiet] = true
+        # Prevent fake file from being written
+        allow(File).to receive(:open)
       end
 
       it 'uses the last argument for the value of the output option' do

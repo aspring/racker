@@ -75,9 +75,9 @@ RSpec.describe Racker::Processor do
         fixture_path('low_priority_template.rb'),
         fixture_path('high_priority_template.rb'),
       ]
-      @instance.execute!
+      template = @instance.execute!
 
-      result = JSON.parse(File.read(@output_path))
+      result = JSON.parse(template)
       expect(result['variables']['password']).to eq(nil)
     end
 
@@ -86,9 +86,9 @@ RSpec.describe Racker::Processor do
         fixture_path('low_priority_template.rb'),
         fixture_path('high_priority_template.rb'),
       ]
-      @instance.execute!
+      template = @instance.execute!
 
-      result = JSON.parse(File.read(@output_path))
+      result = JSON.parse(template)
       expect(result['variables']['iso_url']).to eq('priority.img')
     end
 
@@ -97,9 +97,9 @@ RSpec.describe Racker::Processor do
         fixture_path('low_priority_template.rb'),
         fixture_path('high_priority_template.rb'),
       ]
-      @instance.execute!
+      template = @instance.execute!
 
-      result = JSON.parse(File.read(@output_path))
+      result = JSON.parse(template)
       expect(result['variables'].key?('nil')).to eq(false)
     end
 
@@ -107,31 +107,9 @@ RSpec.describe Racker::Processor do
       @options[:templates] = [
         fixture_path('low_priority_template.rb'),
       ]
-      @instance.execute!
+      template = @instance.execute!
 
-      expected = {
-        'variables' => {
-          'iso_url' => 'os.img',
-          'password' => 'password',
-        },
-      }
-      expect(JSON.parse(File.read(@output_path))).to eq(expected)
-    end
-
-    it 'writes the computed template to a given path' do
-      output_dir = File.dirname(@output_path)
-      FileUtils.rm_rf(output_dir) if Dir.exists?(output_dir)
-
-      @options.replace({
-        :output => @output_path,
-        :quiet => true,
-        :templates => [
-          fixture_path('low_priority_template.rb'),
-        ],
-      })
-
-      @instance.execute!
-      expect(File.exists?(@output_path)).to eq(true)
+      expect(JSON.parse(template)).to eq(parsed_low_priority_template)
     end
 
   end

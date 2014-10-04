@@ -37,10 +37,23 @@ module Racker
 
       # Run through Racker
       logger.debug('Executing the Racker Processor...')
-      Processor.new(options).execute!
-      logger.debug('Processing complete.')
+      template = Processor.new(options).execute!
+
+      # Check that the output directory exists
+      output_dir = File.dirname(File.expand_path(@options[:output]))
+
+      # If the output directory doesnt exist
+      logger.info('Creating the output directory if it does not exist...')
+      FileUtils.mkdir_p output_dir unless File.exists? output_dir
+
+      File.open(@options[:output], 'w') do |file|
+        logger.info('Writing packer template...')
+        file.write(template)
+        logger.info('Writing packer template complete.')
+      end
 
       # Thats all folks!
+      logger.debug('Processing complete.')
       puts "Processing complete!" unless options[:quiet]
       puts "Packer file generated: #{options[:output]}" unless options[:quiet]
 
