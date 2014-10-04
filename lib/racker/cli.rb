@@ -9,6 +9,8 @@ module Racker
   class CLI
     include Racker::LogSupport
 
+    STDOUT_TOKEN = '-'
+
     attr_reader :options
 
     def initialize(argv)
@@ -28,9 +30,14 @@ module Racker
         Kernel.exit!(1)
       end
 
-      # Set the output file to the last arg
-      options[:output] = @argv.pop
-      logger.debug("Output file set to: #{options[:output]}")
+      # Set the output file to the last arg. A single dash can be supplied to
+      # indicate that the compiled template should be written to STDOUT. Output
+      # to STDOUT assumes the quiet option.
+      options[:output] = output = @argv.pop
+      logger.debug("Output file set to: #{output}")
+
+      # Output to STDOUT assumes quiet mode
+      @options[:quiet] = true if output == STDOUT_TOKEN
 
       # Set the input files to the remaining args
       options[:templates] = @argv
@@ -39,18 +46,7 @@ module Racker
       logger.debug('Executing the Racker Processor...')
       template = Processor.new(options).execute!
 
-      # Check that the output directory exists
-      output_dir = File.dirname(File.expand_path(@options[:output]))
-
-      # If the output directory doesnt exist
-      logger.info('Creating the output directory if it does not exist...')
-      FileUtils.mkdir_p output_dir unless File.exists? output_dir
-
-      File.open(@options[:output], 'w') do |file|
-        logger.info('Writing packer template...')
-        file.write(template)
-        logger.info('Writing packer template complete.')
-      end
+      write(output, template)
 
       # Thats all folks!
       logger.debug('Processing complete.')
@@ -99,5 +95,41 @@ module Racker
         end
       end
     end
+
+    private
+
+    def write(output_path, template)
+      if output_path == STDOUT_TOKEN
+        write_to_stdout(template)
+      else
+        write_to_file(template, output_path)
+      end
+      true
+    end
+
+    def write_to_file(template, path)
+      path = File.expand_path(path)
+      output_dir = File.dirname(path)
+
+      # Create output directory if it does not exist
+      unless File.directory?(output_dir)
+        logger.info(%Q[Creating output directory "#{output_dir}"])
+        FileUtils.mkdir_p(output_dir)
+      end
+
+      File.open(path, 'w') { |file| write_to_stream(template, file, path) }
+    end
+
+    def write_to_stdout(template)
+      write_to_stream(template, $stdout, :STDOUT)
+    end
+
+    def write_to_stream(template, stream, stream_name)
+      logger.info("Writing packer template to #{stream_name}")
+      stream.write(template)
+      stream.flush if stream.respond_to?(:flush)
+      logger.info("Writing packer template to #{stream_name} complete.")
+    end
+
   end
 end
