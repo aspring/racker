@@ -5,15 +5,16 @@ module Racker
   module Builders
     # This is the Builder base class
     class Builder
+      include Racker::LogSupport
+
       def to_packer(name, config)
-        log = Log4r::Logger['racker']
-        log.debug("Entering #{self.class}.#{__method__}")
+        logger.debug("Entering #{self.class}.#{__method__}")
 
         # Set the name of the builder
-        log.info("Setting config name to #{name}")
+        logger.info("Setting config name to #{name}")
         config['name'] = name
 
-        log.debug("Leaving #{self.class}.#{__method__}")
+        logger.debug("Leaving #{self.class}.#{__method__}")
         config
       end
 

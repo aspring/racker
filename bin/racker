@@ -1,40 +1,27 @@
 #!/usr/bin/env ruby
 # encoding: utf-8
 
-if RUBY_VERSION >= '1.9.2'
-  require 'log4r'
-
-  begin
-    $:.unshift(File.expand_path(File.join(File.dirname(__FILE__), '..', 'lib')))
-    require 'racker'
-
-    # Create the initial logger
-    log = Log4r::Logger.new('racker')
-
-    # Set the output to STDOUT
-    log.outputters = Log4r::Outputter.stdout
-
-    # We set the initial log level to ERROR
-    log.level = Log4r::ERROR
-
-    # Let the CLI do its thing
-    exit_code = Racker::CLI.new(ARGV.dup).execute!
-
-    log.info("Exit code: #{exit_code}")
-    Kernel.exit!(exit_code)
-  rescue Exception => e
-    log = Log4r::Logger.new('racker')
-    log.outputters = Log4r::Outputter.stdout
-    log.error("Racker has encountered an unexpected error!")
-    log.error()
-    log.error("Details:")
-    log.error(e.inspect)
-    log.error(e.message)
-    log.error(e.backtrace.join('\n'))
-    exit e.status_code if e.respond_to?(:status_code)
-    exit 999
-  end
-else
+if RUBY_VERSION < '1.9.2'
   puts 'Racker supports only Ruby 1.9.2+'
   exit(-1)
+end
+
+begin
+  $:.unshift(File.expand_path(File.join(File.dirname(__FILE__), '..', 'lib')))
+  require 'racker'
+
+  logger = Racker::LogSupport.logger
+  # Let the CLI do its thing
+  exit_code = Racker::CLI.new(ARGV.dup).execute!
+
+  logger.info("Exit code: #{exit_code}")
+  Kernel.exit!(exit_code)
+rescue Exception => e
+  logger.error("Racker has encountered an unexpected error!")
+  logger.error()
+  logger.error("Details:")
+  logger.error(e.inspect)
+  logger.error(e.message)
+  logger.error(e.backtrace.join('\n'))
+  exit e.respond_to?(:status_code) ? e.status_code : 999
 end
