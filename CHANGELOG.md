@@ -1,3 +1,7 @@
+## 0.2.0 (Unreleased)
+
+* Added support for output to STDOUT.  The filename of '-' is used to signify outout should go to STDOUT. (PR#7)  This feature will become the default functionality in the 0.3.0 release.
+
 ## 0.1.6 (2014-09-16)
 
 * Fixed `uninitialized constant Racker::Builders::Null` bug.

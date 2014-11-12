@@ -31,7 +31,7 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency 'rake'
   gem.add_development_dependency 'rspec'
   gem.add_development_dependency 'rspec-mocks'
-  gem.add_development_dependency 'rubocop',         '~> 0.18'
+  gem.add_development_dependency 'rubocop',         '~> 0.26.1'
   gem.add_development_dependency 'ruby_gntp',       '~> 0.3.4'
   gem.add_development_dependency 'simplecov',       '~> 0.7.1'
   gem.add_development_dependency 'yard',            '~> 0.8'
