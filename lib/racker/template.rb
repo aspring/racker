@@ -10,6 +10,7 @@ require 'racker/builders/openstack'
 require 'racker/builders/qemu'
 require 'racker/builders/virtualbox'
 require 'racker/builders/vmware'
+require 'racker/builders/parallels'
 
 module Racker
   # This class handles the bulk of the legwork working with Racker templates
@@ -20,22 +21,6 @@ module Racker
     def to_packer
       # Create the new smash
       packer = Smash.new
-
-      # Variables
-      packer['variables'] = self['variables'].dup unless self['variables'].nil? || self['variables'].empty?
-
-      # Builders
-      packer['builders'] = [] unless self['builders'].nil? || self['builders'].empty?
-      logger.info("Processing builders...")
-      self['builders'].each do |name,config|
-        logger.info("Processing builder: #{name} with type: #{config['type']}")
-
-        # Get the builder for this config
-        builder = get_builder(config['type'])
-
-        # Have the builder convert the config to packer format
-        packer['builders'] << builder.to_packer(name, config.dup)
-      end
 
       # Provisioners
       packer['provisioners'] = [] unless self['provisioners'].nil? || self['provisioners'].empty?
@@ -54,6 +39,22 @@ module Racker
         logger.debug("Processing post-processor: #{name}")
         packer['post-processors'] << config.dup unless config.nil?
       end
+
+      # Builders
+      packer['builders'] = [] unless self['builders'].nil? || self['builders'].empty?
+      logger.info("Processing builders...")
+      self['builders'].each do |name,config|
+        logger.info("Processing builder: #{name} with type: #{config['type']}")
+
+        # Get the builder for this config
+        builder = get_builder(config['type'])
+
+        # Have the builder convert the config to packer format
+        packer['builders'] << builder.to_packer(name, config.dup)
+      end
+      
+      # Variables
+      packer['variables'] = self['variables'].dup unless self['variables'].nil? || self['variables'].empty?
 
       packer
     end
@@ -80,6 +81,8 @@ module Racker
         Racker::Builders::Virtualbox.new
       when /vmware/
         Racker::Builders::VMware.new
+      when /parallels/
+        Racker::Builders::Parallels.new
       else
         Racker::Builders::Builder.new
       end
