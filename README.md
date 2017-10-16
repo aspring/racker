@@ -182,6 +182,16 @@ Racker::Processor.register_template do |t|
 end
 ```
 
+#### Other keys
+
+You can add `description` or `min_packer_version` to template.
+
+```ruby
+Racker::Processor.register_template do |t|
+    t.description = 'some description'
+    t.min_packer_version = '1.0.0'
+end
+```
 ### Putting it all together
 
 Racker offers 2 very basic example templates `example/template1.rb` and `example/template2.rb` as well as the resulting packer template from the two templates run through Racker.

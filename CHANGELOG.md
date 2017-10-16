@@ -1,3 +1,7 @@
+## Unreleased
+
+* Added support for `min_packer_version` and `description` keys.
+
 ## 0.2.0 (2016-03-01)
 
 * Added support for output to STDOUT.  The filename of '-' is used to signify outout should go to STDOUT. (PR#7)  This feature will become the default functionality in the 0.3.0 release.

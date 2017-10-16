@@ -22,6 +22,12 @@ module Racker
       # Create the new smash
       packer = Smash.new
 
+      # Packer Version
+      packer['min_packer_version'] = self['min_packer_version'].dup unless self['min_packer_version'].nil? || self['min_packer_version'].empty?
+
+      # Description
+      packer['description'] = self['description'].dup unless self['description'].nil? || self['description'].empty?
+
       # Variables
       packer['variables'] = self['variables'].dup unless self['variables'].nil? || self['variables'].empty?
 
