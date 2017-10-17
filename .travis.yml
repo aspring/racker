@@ -20,4 +20,7 @@ rvm:
   - rbx
 
 script:
-  - rake spec
+  - bundle exec rake spec
+
+before_install:
+  - gem update bundler

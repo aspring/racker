@@ -21,7 +21,7 @@ Gem::Specification.new do |gem|
   gem.add_dependency       'multi_json',        '~> 1.8'
   gem.add_dependency       'log4r',             '~> 1.1.10'
 
-  gem.add_development_dependency 'bundler',         '~> 1.3'
+  gem.add_development_dependency 'bundler',         '~> 1.15'
   gem.add_development_dependency 'coveralls',       '~> 0.6.7'
   gem.add_development_dependency 'guard',           '~> 2.2.3'
   gem.add_development_dependency 'guard-bundler',   '~> 2.0.0'
