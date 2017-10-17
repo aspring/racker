@@ -112,6 +112,26 @@ RSpec.describe Racker::Processor do
       expect(JSON.parse(template)).to eq(parsed_low_priority_template)
     end
 
+    it 'supports `min_packer_version` option' do
+      @options[:templates] = [
+        fixture_path('high_priority_template.rb'),
+      ]
+      template = @instance.execute!
+
+      result = JSON.parse(template)
+      expect(result['min_packer_version']).to eq('1.1.1')
+    end
+
+    it 'supports `description` option' do
+      @options[:templates] = [
+        fixture_path('high_priority_template.rb'),
+      ]
+      template = @instance.execute!
+
+      result = JSON.parse(template)
+      expect(result['description']).to eq('some description')
+    end
+
   end
 
   context '#initialize' do

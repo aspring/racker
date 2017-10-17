@@ -16,8 +16,12 @@ rvm:
   - 1.9.3
   - 2.0.0
   - 2.1.3
+  - 2.4.1
   - jruby
   - rbx
 
 script:
-  - rake spec
+  - bundle exec rake spec
+
+before_install:
+  - gem update bundler
